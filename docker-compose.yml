@@ -12,6 +12,8 @@ services:
       - 3000:3000
     volumes:
       - .:/usr/src/app
+    links:
+      - mongodb
   mongodb:
     image: mongo:latest
     ports: 
