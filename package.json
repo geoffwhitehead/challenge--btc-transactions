@@ -5,15 +5,13 @@
   "scripts": {
     "start": "ts-node ./app.ts"
   },
+  "devDependencies": {
+    "@types/jsonstream": "^0.8.30",
+    "@types/mongoose": "^5.11.97"
+  },
   "dependencies": {
-    "@types/mongoose": "^5.11.97",
-    "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
-    "express": "~4.16.1",
-    "http-errors": "~1.6.3",
-    "jade": "~1.11.0",
+    "JSONStream": "^1.3.5",
     "mongoose": "^6.2.3",
-    "morgan": "~1.9.1",
     "nodemon": "^2.0.15",
     "ts-node": "^10.5.0",
     "typescript": "^4.5.5"

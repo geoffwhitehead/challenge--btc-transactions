@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose'
 
-interface Transaction {
+export interface Transaction {
     involvesWatchonly: boolean,
     account: string,
     address: string,
@@ -28,11 +28,11 @@ type TransactionCategory = keyof typeof transactionCategory
 
 const schema = new Schema<Transaction>({
     involvesWatchonly: {type: Boolean, required: true},
-    account: {type: String, required: true},
+    account: {type: String},
     address: {type: String, required: true},
     category: {type: String, required: true},
     amount: {type: Number, required: true},
-    label: {type: String, required: true},
+    label: {type: String},
     confirmations: {type: Number, required: true},
     blockhash: {type: String, required: true},
     blockindex: {type: Number, required: true},
