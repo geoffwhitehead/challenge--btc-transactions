@@ -1,6 +1,6 @@
-import { readData } from './read'
+import { readData } from './read';
 
 export const start = () => {
-  console.log('hello')
-  readData()
-}
+  console.log('hello');
+  readData();
+};

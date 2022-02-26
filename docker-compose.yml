@@ -16,10 +16,10 @@ services:
       - mongodb
   mongodb:
     image: mongo:latest
-    ports: 
+    ports:
       - 27017:27017
     volumes:
       - data:/data/db
-  
+
 volumes:
   data:
