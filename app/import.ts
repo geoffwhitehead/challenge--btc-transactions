@@ -3,7 +3,7 @@ import jsonstream from 'JSONStream';
 import fs from 'fs';
 import mongoose from 'mongoose';
 
-const BATCH_LIMIT = 20;
+const BATCH_LIMIT = 50;
 
 const createStream = (dir: string, path: string): stream.PassThrough =>
   fs
@@ -17,7 +17,7 @@ const createStream = (dir: string, path: string): stream.PassThrough =>
 
 export const importer = async <T extends typeof mongoose.Model>(
   dirs: string[],
-  model: T,
+  Model: T,
   path: string
 ) => {
   let docs: T[] = [];
@@ -26,11 +26,11 @@ export const importer = async <T extends typeof mongoose.Model>(
     for await (const transaction of createStream(dir, path)) {
       docs.push(transaction);
       if (docs.length === BATCH_LIMIT) {
-        await model.insertMany(docs);
+        await Model.insertMany(docs);
         docs = [];
       }
     }
 
-    docs.length && model.insertMany(docs);
+    docs.length && Model.insertMany(docs);
   }
 };

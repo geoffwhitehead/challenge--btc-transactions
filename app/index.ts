@@ -15,12 +15,6 @@ const TRANSACTION_DIRS = [
 const CUSTOMER_DIRS = ['data/customers.json'];
 
 export const start = async () => {
-  // clear db
-  await Promise.all([
-    CustomerModel.deleteMany({}),
-    TransactionModel.deleteMany({}),
-  ]);
-
   // import data
   await importer(CUSTOMER_DIRS, CustomerModel, 'customers.*');
   await importer(TRANSACTION_DIRS, TransactionModel, 'transactions.*');
