@@ -1,5 +1,9 @@
 import { importer } from './import';
-import { getAccountDeposits } from './data';
+import {
+  getAccountDeposits,
+  getLargestValidDeposit,
+  getSmallestValidDeposit,
+} from './data';
 import { printAccountDeposits } from './print';
 import { TransactionModel } from '../models/transaction';
 import { CustomerModel } from '../models/customer';
@@ -21,9 +25,11 @@ export const start = async () => {
   await importer(CUSTOMER_DIRS, CustomerModel, 'customers.*');
   await importer(TRANSACTION_DIRS, TransactionModel, 'transactions.*');
 
-  // get aggregation data
-  const data = await getAccountDeposits();
+  // query account data
+  const accountDeposits = await getAccountDeposits();
+  const smallestDeposit = await getSmallestValidDeposit();
+  const largestDeposit = await getLargestValidDeposit();
 
   // output to console
-  printAccountDeposits(data);
+  printAccountDeposits({ accountDeposits, smallestDeposit, largestDeposit });
 };

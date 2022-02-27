@@ -1,5 +1,5 @@
 import { Customer } from '../models/customer';
-import { TransactionModel } from '../models/transaction';
+import { Transaction, TransactionModel } from '../models/transaction';
 
 export interface AccountDepositAggregation {
   unknown: GroupedByAccount[];
@@ -71,4 +71,25 @@ export const getAccountDeposits = async () => {
   ]);
 
   return data[0];
+};
+
+export const getSmallestValidDeposit =
+  async (): Promise<Transaction | null> => {
+    const data = await TransactionModel.find({
+      confirmations: { $gte: REQUIRED_CONFIRMATIONS },
+      category: 'receive',
+    })
+      .sort({ amount: 1 })
+      .limit(1);
+    return data?.[0] || null;
+  };
+
+export const getLargestValidDeposit = async (): Promise<Transaction | null> => {
+  const data = await TransactionModel.find({
+    confirmations: { $gte: REQUIRED_CONFIRMATIONS },
+    category: 'receive',
+  })
+    .sort({ amount: -1 })
+    .limit(1);
+  return data?.[0] || null;
 };
