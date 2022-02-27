@@ -6,7 +6,9 @@ export interface AccountDepositAggregation {
   customers: GroupedByAccountCustomer[];
 }
 
-interface GroupedByAccountCustomer extends GroupedByAccount, Customer {}
+interface GroupedByAccountCustomer extends GroupedByAccount {
+  customer: Customer;
+}
 
 interface GroupedByAccount {
   _id: string;
@@ -68,5 +70,5 @@ export const getAccountDeposits = async () => {
     },
   ]);
 
-  return data;
+  return data[0];
 };
