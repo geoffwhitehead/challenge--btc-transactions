@@ -47,3 +47,16 @@ The command `docker-compose up` **MUST**:
    The numbers in line 8 **MUST** be the count and the sum of the valid deposits to addresses that are not associated with a known customer.
 
    **Note**: We'll match for these 10 lines with regular expressions. Please stick to this exact template, otherwise it won't be detected.
+
+## Outcome
+
+**FAIL**
+
+**Feedback**
+Major: Didn't filter for duplicate transactions.
+Major: Smallest valid deposit reported as 0. A deposit can not have a value of 0 since it wouldn't be a deposit then.
+Minor: Did consider two different outputs in one transaction as duplicates. In Bitcoin uniqueness is txid + vout.
+Minor: Numbers not formatted to have 8 decimals like the template specified.
+Minor: Did not consider deposits resulting from mining rewards.
+Nice: Clean code style
+Nice: Wrote test cases
