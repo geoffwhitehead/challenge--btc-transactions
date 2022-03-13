@@ -53,10 +53,10 @@ The command `docker-compose up` **MUST**:
 **FAIL**
 
 **Feedback**
-Major: Didn't filter for duplicate transactions.
-Major: Smallest valid deposit reported as 0. A deposit can not have a value of 0 since it wouldn't be a deposit then.
-Minor: Did consider two different outputs in one transaction as duplicates. In Bitcoin uniqueness is txid + vout.
-Minor: Numbers not formatted to have 8 decimals like the template specified.
-Minor: Did not consider deposits resulting from mining rewards.
-Nice: Clean code style
-Nice: Wrote test cases
+- Major: Didn't filter for duplicate transactions.
+- Major: Smallest valid deposit reported as 0. A deposit can not have a value of 0 since it wouldn't be a deposit then.
+- Minor: Did consider two different outputs in one transaction as duplicates. In Bitcoin uniqueness is txid + vout.
+- Minor: Numbers not formatted to have 8 decimals like the template specified.
+- Minor: Did not consider deposits resulting from mining rewards.
+- Nice: Clean code style
+- Nice: Wrote test cases
